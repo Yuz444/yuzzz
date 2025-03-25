@@ -65,3 +65,78 @@ YUZ
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2 - Berserk</title>
+    <style>
+        body {
+            background: url('https://i.imgur.com/6K9dBpc.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: white;
+            background: #ff5722;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue sur la deuxième page</h1>
+        <p>Encore plus d'images et d'infos sur Berserk !</p>
+        <a href="index.html">Retour</a>
+    </div>
+</body>
+</html>
+
