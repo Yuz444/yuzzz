@@ -12,7 +12,7 @@ YUZ
         }
 
         body {
-            background: url('https://i.imgur.com/6K9dBpc.jpg') no-repeat center center/cover;
+            background: url('https://static.fnac-static.com/multimedia/Images/FD/Comete/125059/CCP_IMG_1200x800/1631232.jpg') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -61,8 +61,7 @@ YUZ
     <div class="container">
         <h1>Bienvenue sur mon site</h1>
         <p>Une belle page avec une image de Berserk en fond.</p>
-        <a href="#" class="btn">Découvrir</a>
+        <a href="page2.html" class="btn">Découvrir</a>
     </div>
 </body>
 </html>
-
