@@ -12,7 +12,7 @@ YUZ
         }
 
         body {
-            background: url('https://preview.redd.it/4bqhih6hof7a1.jpg?auto=webp&s=8b064ac1ec03dbc6b63c4319e4178b39b5128e7c') no-repeat center center/cover;
+            background: url('https://uploads8.wikiart.org/00384/images/kentaro-miura/24miura2-superjumbo.jpg!Large.jpg') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
