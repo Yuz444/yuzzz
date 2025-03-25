@@ -12,7 +12,7 @@ YUZ
         }
 
         body {
-            background: url('https://static.fnac-static.com/multimedia/Images/FD/Comete/125059/CCP_IMG_1200x800/1631232.jpg') no-repeat center center/cover;
+            background: url('https://preview.redd.it/4bqhih6hof7a1.jpg?auto=webp&s=8b064ac1ec03dbc6b63c4319e4178b39b5128e7c') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
