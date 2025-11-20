@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page simple</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #111; }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { margin: 0 0 8px 0; font-size: 1.8rem; }
+    p { line-height: 1.5; }
+    button { padding: 8px 14px; border-radius: 8px; border: 1px solid #ccc; background: #f6f6f6; cursor: pointer; }
+    footer { margin-top: 28px; font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bienvenue sur ma page simple</h1>
+    <p>Une page HTML minimale — modifie le texte comme tu veux.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Un peu d'interaction</h2>
+      <p id="message">Clique sur le bouton pour afficher un message.</p>
+      <button id="btn">Clique moi</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="annee"></span> — Simple HTML</p>
+  </footer>
+
+  <script>
+    // Met l'année courante
+    document.getElementById('annee').textContent = new Date().getFullYear();
+
+    // Bouton interactif
+    document.getElementById('btn').addEventListener('click', function () {
+      const msg = document.getElementById('message');
+      msg.textContent = 'Bravo — tu as cliqué ! ✨';
+    });
+  </script>
+
+
+<div style="position: absolute; top: 10px; left: 10px;">
+  <a href="https://www.amazon.com" target="_blank">
+    <i class="bi bi-amazon" style="font-size: 50px; color: #5dfa02;"></i>
+  </a>
+</div>
+
+<a href="https://www.apple.com" target="_blank">
+  <i class="bi bi-apple" style="font-size: 50px; color: #02e9fa;"></i>
+</a>
+
+<div>
+  <a href="https://gmail.com" target="_blank">
+    <i class="bi bi-envelope-exclamation" style="font-size: 50px; color: #fa02d9"></i>
+  </a>
+</div>
+
+
+<body>

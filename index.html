@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Lecteur Spotify Style - Local</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Vinyle flou arrière-plan -->
+  <div id="coverBackground"></div>
+
+  <!-- Playlist -->
+  <div id="playlistContainer"></div>
+
+  <!-- Player -->
+  <div class="player-bar">
+    <div class="track-info">
+      <img id="coverMini" class="cover-mini" src="" alt="Cover">
+      <div class="title-container">
+        <div class="title" id="titleBar">🎵 Sélectionne une musique</div>
+        <div class="artist" id="artistBar">Artiste</div>
+      </div>
+    </div>
+
+    <div class="controls-bar">
+      <button id="prevBtn">⏮️</button>
+      <button id="playPause">▶️</button>
+      <button id="nextBtn">⏭️</button>
+    </div>
+
+    <input type="range" id="progressBar" min="0" max="100" value="0">
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const playlist = [
+      { title: "Cascade", artist: "Pixabay Artist 1", src: "https://cdn.pixabay.com/download/audio/2025/06/04/audio_cdce856ddb.mp3?filename=vlog-beat-background-349853.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Digital Beat", artist: "Pixabay Artist 2", src: "https://cdn.pixabay.com/download/audio/2025/09/08/audio_3e2526c41c.mp3?filename=deep-abstract-ambient_snowcap-401656.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Deep House", artist: "Pixabay Artist 3", src: "https://cdn.pixabay.com/download/audio/2025/09/30/audio_a59a02b883.mp3?filename=cascade-breathe-future-garage-412839.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Electro Vibes", artist: "Pixabay Artist 4", src: "https://cdn.pixabay.com/download/audio/2025/10/28/audio_4285598df8.mp3?filename=groovy-vibe-427121.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Calm Waves", artist: "Pixabay Artist 5", src: "https://cdn.pixabay.com/download/audio/2025/07/24/audio_a9d5c452af.mp3?filename=tell-me-what-379638.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Night Drive", artist: "Pixabay Artist 6", src: "https://cdn.pixabay.com/download/audio/2024/01/05/audio_df760de79f.mp3?filename=midnight-forest-184304.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Chill Out", artist: "Pixabay Artist 7", src: "https://cdn.pixabay.com/download/audio/2024/01/05/audio_df760de79f.mp3?filename=midnight-forest-184304.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Jazz Lounge", artist: "Pixabay Artist 8", src: "https://cdn.pixabay.com/download/audio/2025/09/30/audio_a59a02b883.mp3?filename=cascade-breathe-future-garage-412839.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Synthwave", artist: "Pixabay Artist 9", src: "https://cdn.pixabay.com/download/audio/2025/08/30/audio_00ae00f400.mp3?filename=the-last-point-beat-electronic-digital-394291.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" },
+      { title: "Morning Sun", artist: "Pixabay Artist 10", src: "https://cdn.pixabay.com/download/audio/2025/09/30/audio_a59a02b883.mp3?filename=cascade-breathe-future-garage-412839.mp3", cover: "https://th.bing.com/th/id/OIP.gFLwxYEWY0Fxjp2Z58SCmwHaEo?w=300&h=187&c=7&r=0&o=7&cb=ucfimgc2&pid=1.7&rm=3" }
+    ];
+
+
+    const audio = document.getElementById("audio");
+    const playPause = document.getElementById("playPause");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const progressBar = document.getElementById("progressBar");
+    const coverMini = document.getElementById("coverMini");
+    const coverBackground = document.getElementById("coverBackground");
+    const titleBar = document.getElementById("titleBar");
+    const artistBar = document.getElementById("artistBar");
+    const playlistContainer = document.getElementById("playlistContainer");
+
+    let currentIndex = 0;
+    let isPlaying = false;
+
+    function loadTrack(index) {
+      const track = playlist[index];
+      audio.src = track.src;
+      titleBar.textContent = track.title;
+      artistBar.textContent = track.artist;
+      coverMini.src = track.cover;
+      coverBackground.style.backgroundImage = `url(${track.cover})`;
+    }
+
+    function playTrack() {
+      audio.play();
+      isPlaying = true;
+      playPause.textContent = "⏸️";
+      coverMini.classList.add("spin");
+      coverBackground.classList.add("spin");
+    }
+
+    function pauseTrack() {
+      audio.pause();
+      isPlaying = false;
+      playPause.textContent = "▶️";
+      coverMini.classList.remove("spin");
+      coverBackground.classList.remove("spin");
+    }
+
+    function togglePlay() { isPlaying ? pauseTrack() : playTrack(); }
+    function nextTrack() { currentIndex = (currentIndex + 1) % playlist.length; loadTrack(currentIndex); playTrack(); }
+    function prevTrack() { currentIndex = (currentIndex - 1 + playlist.length) % playlist.length; loadTrack(currentIndex); playTrack(); }
+
+    // Génération dynamique de la playlist
+    playlist.forEach((track, index) => {
+      const item = document.createElement("div");
+      item.className = "playlist-item";
+      item.textContent = `${track.title} - ${track.artist}`;
+      item.onclick = () => { currentIndex = index; loadTrack(index); playTrack(); };
+      playlistContainer.appendChild(item);
+    });
+
+    audio.addEventListener("timeupdate", () => { if(audio.duration) progressBar.value = (audio.currentTime / audio.duration) * 100; });
+    progressBar.addEventListener("input", () => { if(audio.duration) audio.currentTime = (progressBar.value / 100) * audio.duration; });
+    audio.addEventListener("ended", nextTrack);
+
+    playPause.addEventListener("click", togglePlay);
+    nextBtn.addEventListener("click", nextTrack);
+    prevBtn.addEventListener("click", prevTrack);
+
+    loadTrack(currentIndex);
+  </script>
+
+</body>
+</html>
